@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="ADMINS" schema="SYSTEM">
+		<primary-key>
+			<key-column name="ADMINID" type="integer" />
+		</primary-key>
+	</table>
+	<table name="COMMODITY" schema="SYSTEM">
+		<primary-key>
+			<key-column name="COMMODITYID" type="integer" />
+		</primary-key>
+		<column name="COMMODITYCLASS" type="integer"></column>
+		<column name="COMMODITYPRICE" type="integer"></column>
+		<column name="COMMODITYAMOUNT" type="integer"></column>
+		<column name="COMMODITYLEAVENUM" type="integer"></column>
+	</table>
+	<table name="COMMODITYCLASS" schema="SYSTEM">
+		<primary-key>
+			<key-column name="COMMODITYCLASSID" type="integer" />
+		</primary-key>
+	</table>
+	<table name="ORDERFORM" schema="SYSTEM">
+		<primary-key>
+			<key-column name="ORDERFORMID" type="integer" />
+		</primary-key>
+		<column name="USERID" type="integer"></column>
+		<column name="TOTALPRICE" type="integer"></column>
+		<column name="ISPAYOFF" type="integer"></column>
+		<column name="ISCONSIGNMENT" type="integer"></column>
+	</table>
+	<table name="ORDERLIST" schema="SYSTEM">
+		<primary-key>
+			<key-column name="ORDERLISTID" type="integer" />
+		</primary-key>
+		<column name="ORDERFORMID" type="integer"></column>
+		<column name="COMMODITYID" type="integer"></column>
+		<column name="AMOUNT" type="integer"></column>
+	</table>
+<table name="USERS" schema="SYSTEM">
+	<primary-key>
+		<key-column name="USERID" type="integer"/>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

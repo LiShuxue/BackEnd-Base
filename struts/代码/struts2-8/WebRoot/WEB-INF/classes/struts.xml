@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="def" extends="struts-default" namespace="/">
+		
+		<interceptors>
+			<interceptor name="time" class="com.lsx.interceptor.TimeInterceptor"/>
+			
+			<!-- 这是一个拦截器栈 -->
+			<!-- <interceptor-stack name="stack1">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="time"/>
+			</interceptor-stack> -->
+			
+			
+		</interceptors>
+		
+		<action name="action1" class="com.lsx.action.DemoAction1">
+			<!-- 应用一个拦截器栈 -->
+			<!-- <interceptor-ref name="stack1"/> -->
+			
+			<!-- 先写上 系统的拦截器 -->
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="time"/>
+			
+			<result>/show.jsp</result>
+		</action>
+	</package>
+
+</struts>    

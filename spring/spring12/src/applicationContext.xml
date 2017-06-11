@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<bean id="helloSpeaker" class="com.lsx.demo.HelloSpeaker"/>
+	
+	<bean id="logAspect" class="com.lsx.demo.LogAspect"/>
+	
+	<aop:config>
+		<!-- 定义一个切面 -->
+		<aop:aspect id="logging" ref="logAspect">
+			<!-- 定义一个切入点，可重用 -->
+			<aop:pointcut expression="execution(* com.lsx.demo.IHello.*(..))" id="helloPointcut"/>
+			
+			<!-- 在业务之前切入 before方法 -->
+			<aop:before method="before" pointcut-ref="helloPointcut"/>
+			<!-- 在业务之后切入 afterReturning方法 -->
+			<aop:after-returning method="afterReturning" pointcut-ref="helloPointcut"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+	
+	<!-- 
+		加入aop的支持
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	 -->
+
+	<!-- Advice,要注入的程序 -->
+	<bean id="logBeforeAdvice" class="com.lsx.demo.LogBeforeAdvice"/>
+	
+	<!-- 业务类，实现IHello接口 -->
+	<bean id="helloSpeaker" class="com.lsx.demo.HelloSpeaker"/>
+	
+	<!-- 配置一个Advisor -->
+	<aop:config>
+		<!-- 定义一个切面，通过pointcut指定的规则，在调用了IHello接口所有的“方法前”注入Advice中的before方法
+			execution中第一个*，表示任意类型返回值。第二个*表示IHello任意方法。(..)表示任意参数
+		 -->
+		<aop:aspect id="logging" ref="logBeforeAdvice">
+			<aop:before method="before" pointcut="execution(* com.lsx.demo.IHello.*(..))"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+</beans>

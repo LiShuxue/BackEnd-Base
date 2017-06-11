@@ -1,0 +1,14 @@
+create table users(
+	id number not null primary key,
+	username varchar2(200) not null,
+	password varchar2(200) not null
+)
+
+-- 创建序列
+create sequence userid
+-- 序列的测试,userid.nextval每次执行都会加1
+-- 通过这个序列号作为数据的主键
+select userid.nextval from dual
+insert into users values(userid.nextval,'zhangsan','123123')
+insert into users values(userid.nextval,'lisi','111111')
+select * from users

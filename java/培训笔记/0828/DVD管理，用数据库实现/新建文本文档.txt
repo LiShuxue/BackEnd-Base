@@ -1,0 +1,11 @@
+create table t_dvd(
+	id number not null primary key,
+	name varchar2(200),
+	state number,
+	time date,
+	count number,
+	isDel number
+)
+create sequence dvdid
+insert into t_dvd values(dvdid.nextval,'a',0,sysdate,0,0)
+select * from t_dvd

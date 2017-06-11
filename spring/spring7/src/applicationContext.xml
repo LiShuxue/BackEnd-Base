@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- 实例化 LogBeforeAdvice-->
+	<bean id="logBeforeAdvice" class="com.lsx.demo.LogBeforeAdvice"/>
+	
+	<!-- 实例化 LogAfterAdvice-->
+	<bean id="logAfterAdvice" class="com.lsx.demo.LogAfterAdvice"/>
+	
+	<!-- 实例化 HelloSpeaker-->
+	<bean id="helloSpeaker" class="com.lsx.demo.HelloSpeaker"/>
+	
+	<!-- 建立了依赖关系，将前后功能加入到了 helloSpeaker 里
+		helloProxy 我的代理对象  在程序中获取代理对象
+	-->
+	<bean id="helloProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 代理对象要实现的接口 -->
+		<property name="proxyInterfaces" value="com.lsx.demo.IHello"/>
+		<!-- 我要代理的对象是谁 -->
+		<property name="target" ref="helloSpeaker"/>
+		<!-- 我要加入的功能 -->
+		<property name="interceptorNames">
+			<list>
+				<value>logBeforeAdvice</value>
+				<value>logAfterAdvice</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	
+	<!-- 对于MethodInterceptor接口来实现的前后切入 -->
+	
+	<bean id="logInterceptor" class="com.lsx.demo.LogInterceptor"/>
+	
+	<bean id="interceptorProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces" value="com.lsx.demo.IHello"/>
+		<property name="target" ref="helloSpeaker"/>
+		<property name="interceptorNames">
+			<list>
+				<value>logInterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+
+

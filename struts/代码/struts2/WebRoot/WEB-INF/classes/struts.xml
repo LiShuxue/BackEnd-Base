@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- struts常量设置，请求路径的后缀 -->
+	<!--
+	<constant name="struts.action.extension" value="do, action"/>
+	-->
+	
+	<!-- extends 是继承， namespace是命名空间，可以区分不同类型的action，也就是说相同类型的action可以写在同一个package下，不同的package用不同的namespace -->
+	<package name="p1" extends="struts-default" namespace="">
+		<!-- 配置刚才创建的LoginAction，用哪个方法处理请求，method就写哪个方法-->
+		<action name="login" class="com.lsx.action.LoginAction" method="login">
+			<!-- name是逻辑视图名 -->
+			<result name="ok">/ok.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+</struts>    

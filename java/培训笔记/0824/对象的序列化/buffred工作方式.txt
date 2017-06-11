@@ -1,0 +1,14 @@
+BufferedInputStream
+使用该缓冲区操作流对象，首先要给它提供一个流对象
+也就是说它构造的参数 new BufferedInputStream(in);
+BufferedInputStream 会通过内部的fill()方法和流对象in来填充它内部的缓冲区
+protected volatile byte buf[];  默认大小 8192
+在你每次通过它的read(byte[] ,int,int)来操作输入流时，
+是从它内部的buf[] 数组中来读取数据，当buf[]中的数据被读取没的时候，
+它还会去调用fill()来填充这个buf[]数组
+---------------------------------------------------------------------
+BufferedOutputStream
+当你每次调用write方法时，是将你定义的固长byte[]中的数据输出到
+它自己管理的默认8192的数组中，当数组满的时候，
+利用它构造你指定的OutputStream对象，将数组中的数据 输出到指定的位置上
+比如一个磁盘的 图片文件

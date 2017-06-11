@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>HotelManager</display-name>
+  
+  	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>com.ysj.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>characterEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>enable</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryItemsServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryItemsServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteItemServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.DeleteItemServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateItemServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.UpdateItemServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddItemServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.AddItemServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryItemTypesServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryItemTypesServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteItemTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.DeleteItemTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateItemTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.UpdateItemTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddItemTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.AddItemTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.DoLoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryUsersServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryUsersServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryMembersServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryMembersServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddUserServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddMemberServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.AddMemberServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DeleteMemberServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.DeleteMemberServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateMemberServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.UpdateMemberServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CountItemsServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.CountItemsServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryItemByCodeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryItemByCodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryItemByTypecodeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryItemByTypecodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryItemTypeByTypecodeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryItemTypeByTypecodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryUserByNameServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryUserByNameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryUserByIDServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryUserByIDServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryUsersByUsertypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryUsersByUsertypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryMemberByMidServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryMemberByMidServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryMemberByMnameServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryMemberByMnameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryMemberByMtypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.lsx.QueryMemberByMtypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddRoomTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddRoomTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VaRoomTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.VaRoomTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VaIntegerServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.VaIntegerServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateRoomTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.UpdateRoomTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RoomTypeDeleteServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.RoomTypeDeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryRoomType</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryRoomType</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VaFloorServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.VaFloorServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddFloorServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddFloorServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FloorDeleteServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.FloorDeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryFloor</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryFloor</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateFloorServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.UpdateFloorServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>showRoomTypeServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.showRoomTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowFloorServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowFloorServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowRoomPriceServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowRoomPriceServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddRoomServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowRoomIdServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowRoomIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RoomDeleteServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.RoomDeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryRoom</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryRoom</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateRoomServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.UpdateRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowSelectRoomServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowSelectRoomServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryZRoom</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryZRoom</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowBookIdServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowBookIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddBookServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddBookServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ShowCiIdServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.ShowCiIdServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddCiServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddCiServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryORoom</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryORoom</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Book_AddCiServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.Book_AddCiServlet</servlet-class>
+  </servlet>
+	
+	<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QueryCiInfo</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.QueryCiInfo</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GoToCoServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.GoToCoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddCoServlet</servlet-name>
+    <servlet-class>com.ysj.servlet.cxt.AddCoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>bookReport</servlet-name>
+    <servlet-class>com.ysj.servlet.lx.bookReport</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>bookAllReport</servlet-name>
+    <servlet-class>com.ysj.servlet.lx.bookAllReport</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ciReport</servlet-name>
+    <servlet-class>com.ysj.servlet.lx.ciReport</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ciAllReport</servlet-name>
+    <servlet-class>com.ysj.servlet.lx.ciAllReport</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>coReport</servlet-name>
+    <servlet-class>com.ysj.servlet.lx.coReport</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>QueryItemsServlet</servlet-name>
+    <url-pattern>/QueryItemsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteItemServlet</servlet-name>
+    <url-pattern>/DeleteItemServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateItemServlet</servlet-name>
+    <url-pattern>/UpdateItemServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddItemServlet</servlet-name>
+    <url-pattern>/AddItemServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryItemTypesServlet</servlet-name>
+    <url-pattern>/QueryItemTypesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteItemTypeServlet</servlet-name>
+    <url-pattern>/DeleteItemTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateItemTypeServlet</servlet-name>
+    <url-pattern>/UpdateItemTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddItemTypeServlet</servlet-name>
+    <url-pattern>/AddItemTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DoLoginServlet</servlet-name>
+    <url-pattern>/DoLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryUsersServlet</servlet-name>
+    <url-pattern>/QueryUsersServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryMembersServlet</servlet-name>
+    <url-pattern>/QueryMembersServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <url-pattern>/DeleteUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <url-pattern>/UpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddUserServlet</servlet-name>
+    <url-pattern>/AddUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddMemberServlet</servlet-name>
+    <url-pattern>/AddMemberServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteMemberServlet</servlet-name>
+    <url-pattern>/DeleteMemberServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateMemberServlet</servlet-name>
+    <url-pattern>/UpdateMemberServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CountItemsServlet</servlet-name>
+    <url-pattern>/CountItemsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryItemByCodeServlet</servlet-name>
+    <url-pattern>/QueryItemByCodeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryItemByTypecodeServlet</servlet-name>
+    <url-pattern>/QueryItemByTypecodeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryItemTypeByTypecodeServlet</servlet-name>
+    <url-pattern>/QueryItemTypeByTypecodeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryUserByNameServlet</servlet-name>
+    <url-pattern>/QueryUserByNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryUserByIDServlet</servlet-name>
+    <url-pattern>/QueryUserByIDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryUsersByUsertypeServlet</servlet-name>
+    <url-pattern>/QueryUsersByUsertypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryMemberByMidServlet</servlet-name>
+    <url-pattern>/QueryMemberByMidServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryMemberByMnameServlet</servlet-name>
+    <url-pattern>/QueryMemberByMnameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryMemberByMtypeServlet</servlet-name>
+    <url-pattern>/QueryMemberByMtypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddRoomTypeServlet</servlet-name>
+    <url-pattern>/AddRoomTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VaRoomTypeServlet</servlet-name>
+    <url-pattern>/VaRoomTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VaIntegerServlet</servlet-name>
+    <url-pattern>/VaIntegerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateRoomTypeServlet</servlet-name>
+    <url-pattern>/UpdateRoomTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RoomTypeDeleteServlet</servlet-name>
+    <url-pattern>/RoomTypeDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryRoomType</servlet-name>
+    <url-pattern>/QueryRoomType</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VaFloorServlet</servlet-name>
+    <url-pattern>/VaFloorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddFloorServlet</servlet-name>
+    <url-pattern>/AddFloorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FloorDeleteServlet</servlet-name>
+    <url-pattern>/FloorDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryFloor</servlet-name>
+    <url-pattern>/QueryFloor</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateFloorServlet</servlet-name>
+    <url-pattern>/UpdateFloorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>showRoomTypeServlet</servlet-name>
+    <url-pattern>/showRoomTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowFloorServlet</servlet-name>
+    <url-pattern>/ShowFloorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowRoomPriceServlet</servlet-name>
+    <url-pattern>/ShowRoomPriceServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddRoomServlet</servlet-name>
+    <url-pattern>/AddRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowRoomIdServlet</servlet-name>
+    <url-pattern>/ShowRoomIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RoomDeleteServlet</servlet-name>
+    <url-pattern>/RoomDeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryRoom</servlet-name>
+    <url-pattern>/QueryRoom</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateRoomServlet</servlet-name>
+    <url-pattern>/UpdateRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowSelectRoomServlet</servlet-name>
+    <url-pattern>/ShowSelectRoomServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryZRoom</servlet-name>
+    <url-pattern>/QueryZRoom</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowBookIdServlet</servlet-name>
+    <url-pattern>/ShowBookIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddBookServlet</servlet-name>
+    <url-pattern>/AddBookServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ShowCiIdServlet</servlet-name>
+    <url-pattern>/ShowCiIdServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddCiServlet</servlet-name>
+    <url-pattern>/AddCiServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryORoom</servlet-name>
+    <url-pattern>/QueryORoom</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Book_AddCiServlet</servlet-name>
+    <url-pattern>/Book_AddCiServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QueryCiInfo</servlet-name>
+    <url-pattern>/QueryCiInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoToCoServlet</servlet-name>
+    <url-pattern>/GoToCoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddCoServlet</servlet-name>
+    <url-pattern>/AddCoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>bookReport</servlet-name>
+    <url-pattern>/bookReport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>bookAllReport</servlet-name>
+    <url-pattern>/bookAllReport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ciReport</servlet-name>
+    <url-pattern>/ciReport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ciAllReport</servlet-name>
+    <url-pattern>/ciAllReport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>coReport</servlet-name>
+    <url-pattern>/coReport</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>myservlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 以下配置MyServlet  有两个部分，servlet，servletmapping 
+  	有一个请求，要请求的是/MyServlet，服务器会寻找对应的<url-pattern>,根据<servlet-mapping>中的<servlet-name>找到对应的
+  	<servlet>中的<servlet-name>,然后通过<servlet-class>中配置的类路径，让这个类处理请求
+  -->
+  
+  <servlet>
+ 	<!--name 可以任意写，一般和类名相同-->
+  	<servlet-name>MyServlet2</servlet-name>
+  	<!-- class 写上类路径-->
+  	<servlet-class>com.lsx.servlet.MyServlet2</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<!--name 必须和上方的name相同-->
+  	<servlet-name>MyServlet2</servlet-name>
+  	<!-- servlet的访问路径，一般写  /name  -->
+  	<url-pattern>/MyServlet2</url-pattern>
+  </servlet-mapping>
+ 
+</web-app>

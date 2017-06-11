@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean class="com.lsx.dem.Message" id="message" scope="prototype"/>
+	
+	<!-- 一個MessageManager的子类，重写createMessage方法，注入返回值是message对象 -->
+	<bean class="com.lsx.dem.MessageManager" id="messageManager">
+		<lookup-method name="createMessage" bean="message"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,275 @@
+﻿firstweb-->具体的代码结构，在什么地方写什么内容
+myservlet-->获得index.jsp中的参数的值getParameter("参数名")，配置xml文件
+web1-->servlet响应网页，跳转，重定向sendRedirect()支持站外
+web2-->servlet的生命周期
+web3-->请求转发
+webmvc-->WEB的MVC模型
+web5-->在web.xml中定义参数
+web6-->set,getAttribute、EL表达式、注释，脚本，表达式
+web7-->内置对象
+web8-->session
+web9-->错误处理
+webfilter-->servlet过滤器filter
+webfilter2-->过滤乱码
+webcookie-->cookie
+websession-->HttpSessionListener和HttpSessionAttributeListener
+webjsp-->jsp动作
+webtaglib-->标签库
+webonload-->上传下载
+webel-->调用EL函数
+webmap-->在js中自定义map集合
+webajax-->ajax技术
+
+
+部署项目，就是将项目移动到tomcat-->webapps文件夹下。创建好的项目不要改名字
+src存java文件，所有的jar包存在lib中，所有的网页内容存在WebRoot中，可以建多个文件夹，别把网页存在WEB-INF下边。
+
+自己创建的Servlet类要继承HttpServlet，并重写doGet()和doPost()方法，他们俩都有参数，请求对象和响应对象
+doGet方法用来处理客户端的“Get方式”的请求，doPost方法用来处理客户端的“Post方式”的请求。如何处理，需要自己编码
+超链接属于get方式请求，location.href也是get方式请求，form默认method也是get
+get请求会将内容显示在地址栏上，最多250个字符，post最多4k
+get速度快，post安全性高
+在web.xml配置你创建的servlet
+<!-- 以下配置MyServlet  有两个部分，servlet，servletmapping 
+	有一个请求，要请求的是/MyServlet，服务器会寻找对应的<url-pattern>,
+	根据<servlet-mapping>中的<servlet-name>找到对应的<servlet>中的<servlet-name>,
+	然后通过<servlet-class>中配置的类路径，让这个类处理请求
+-->
+  <servlet>
+ 	<!--name 可以任意写，一般和类名相同-->
+  	<servlet-name>MyServlet</servlet-name>
+  	<!-- class 写上类路径-->
+  	<servlet-class>com.lsx.servlet.MyServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<!--name 必须和上方的name相同-->
+  	<servlet-name>MyServlet</servlet-name>
+  	<!-- servlet的访问路径，一般写  /name  -->
+  	<url-pattern>/MyServlet</url-pattern>
+  </servlet-mapping>
+  
+get和post的区别：
+  1.get是从服务器上获取数据，post是向服务器传送数据。
+  2.get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。
+  post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。
+  4.get传送的数据量较小，post传送的数据量较大
+  5.get安全性非常低，post安全性较高。但是执行效率却比Post方法好。 
+ 建议：
+1、get方式的安全性较Post方式要差些，包含机密信息的话，建议用Post数据提交方式；
+2、在做数据查询时，建议用Get方式；而在做数据添加、修改或删除时，建议用Post方式；
+
+Servlet是运行在web服务器上的Java程序
+
+处理请求数据的中文乱码。req.setCharacterEncoding("UTF-8");
+  
+向客户端输出（就叫响应），响应一个网页，就是在浏览器上显示一个网页
+
+重定向：
+sendRedirect(路径),可以是相对路径，也可以是绝对路径
+重定向：就是一个跳转，和超链接的跳转是一样的，get方式。特点是支持向任意路径跳转（站外）
+如果你在跳转的时候，需要向外传递数据，只能通过“URL重写”来完成
+URL重写：将参数和值都写在路径上， ?xxx=123&www=121
+
+servlet的生命周期：
+Servlet在第一次被访问的时候，加载、实例化、初始化，调用init方法
+之后的每次访问仅仅只做请求的处理
+当服务器正常关闭的时候，会对所有的Servlet进行销毁，调用destroy
+当服务器在运行的过程中，他只会维护一个Servlet的实例。用这个实例来处理所有用户的请求
+每一个用户访问服务器，服务器就会为该用户开辟一个新的线程，也就是说，所有的线程共享一个Servlet
+在Servlet里不能去定义类的属性，这样会发生并发错误
+
+HTTPServletRequest接口的一些方法
+	提取客户端请求信息的一些方法：
+		String getParameter(String name) 获取请求（ 表单） 中参数名为name的参数值
+		String[] getParameterValues(String name) 获取请求中（ 表单） 中所有参数名为name的参数值的集合
+		Enumeration getParameterNames( ) 获取请求中所有参数名的集合
+		String getRemoteAddr( ) 获取客户端的IP
+
+	修改字符集的一些方法：
+		void setCharacterEncoding(String encoding) 设置读取请求的编码方式
+
+	请求转发：
+		ReqeustDispatcher dis = request.getReqeustDispatcher(String path) 将请求转发给另一个web资源
+		dis.forward(request, response)
+		特点：
+		1.只能在站内使用
+		2.可以在跳转的过程中携带对象
+		3.当转发页面刷新，将会再次执行Servlet
+
+HTTPServletResponse接口的一些方法
+	设置响应字符集：
+		void setCharacterEncoding(String code) 设置响应信息的字符集
+
+	向客户端输出信息：
+		void setContentType(String type) 设置输出内容（ MIME）类型
+		void setContentLength(int length) 设置响应报文的长度
+		PrintWriter getWriter( ) 返回可以向客户端发送字符数据的PrinterWriter对象
+		ServletOutputStream getOutputStream( )返回可以向客户端发送二进制数据的输出流对象OutputStream
+		void addCookie(Cookie c) 向报头插入一个cookie
+
+	进行页面跳转：
+		void sendRedirect(String path) 页面跳转，将用户重定向到相关web资源页面
+
+request.getAttribute()与request.setAttribute():
+	request.getAttribute("nameOfObj")可得到JSP页面一表单中控件的Value。
+	其实表单控件中的Object的 name与value是存放在一个哈希表中的，所以在这里给出Object的name会到哈希表中找出对应它的value。
+	而不同页面间传值使用request.setAttribute(position, nameOfObj)时，只会从a.jsp到b.jsp一次传递，
+	之后这个request就会失去它的作用范围，再传就要再设一个 request.setAttribute()。
+	而使用session.setAttribute()会在一个过程中始终保有这个值。
+
+response.sendRedirect 与 request.getRequestDispatcher.forward 的区别：
+1、请求转发是在容器内部实现的同一个Web应用程序的重定向，所以forward方法只能重定向到同一个Web应用程序中的一个资源，重定向后浏览器地址栏URL不变，
+	而sendRedirect方法可以重定向到任何URL， 因为这种方法是修改http头来实现的，URL没什么限制，重定向后浏览器地址栏URL改变。
+2、请求转发前后页面共享一个request ，response.sendRedirect()是重新定向， 前后页面不是一个request。
+	即参数的传递方式不一样:请求转发的form的参数跟着传递，所以在第二个实例中可以取得HTTP请求的参数。
+	sendRedirect只能通过链接传递参数，response.sendRedirect(“login.jsp?param1=a”)。
+3、sendRedirect能够处理相对URL，自动把它们转换成绝对URL，如果地址是相对的，没有一个‘/’，那么Web container就认为它是相对于当前的请求URI的。
+	比如，如果为response.sendRedirect("login.jsp")，则会从当前servlet 的URL路径下找login.jsp： http://10.1.18.8:8081/dms/servlet/Servlet 
+	重定向的URL: http://10.1.18.8:8081/dms/servlet/login.jsp，
+	如果为response.sendRedirect("/login.jsp")则会从当前应用径下查找url:http://10.1.18.8:8081/login.jsp。而forward不能这样处理相对路径。
+
+<% %>是小脚本，可以在jsp页面中写java代码，脚本里面每一句代码需要“；”结束
+<%= %>是表达式，相当于 <%out.print();%>，是输出语句，将表达式结果转换成字符串，在页面输出。表达式里不需要“；”且只能写一句。
+<%-- --%> JSP注释，在客户端是看不见的 
+<%! 函数或方法 %>声明 函数或方法
+
+JSP指令 <%@ directive %>
+三种JSP指令：page，include，taglib
+
+Page指令的属性：
+language指定文件中所使用的脚本语言。目前仅java为有效值和默认值。该指令作用于整个文件， 当多次使用该指令时， 只有第一次使用是有效的。<%@ page language=“java” %>
+import指定导入的Java软件包名或类名列表。 该列表用逗号分隔， 在jsp文件中， 可以多次使用该指令来导入不同的包。<%@ page import=“java.util.*”%>
+contentType指定响应结果的MIME类型。 默认MIME类型为text/html。 默认字符编码为ISO-8859-1。 当多次使用该指令时， 只有第一次使用是有效的。<%@ pagecontentType=“text/html;charset=UTF-8” %>
+pageEncoding定义输出流的字符集编码，默认字符集为ISO-8859-1。<%@ page pageEncoding=“UTF-8”%>
+errorPage 指定当发生异常时， 客户请求被重新定向到哪个网页。<%@ pageerrorPage=“error.jsp”%>
+isErrorPage表示此JSP网页是否为处理异常的网页。 可以使用exception对象<%@ page isErrorPage=“true”%>
+
+include指令
+JSP可以通过include指令来包含其他文件。被包含的文件可以是JSP文件、 HTML文件或文本文件。<%@ include file=”login.jsp” %>
+
+EL表达式存取变量数据的方法很简单，例如：${username}。它的意思是取出某一范围中名称为username的变量
+
+JSP内置对象：
+request 当前的请求对象
+response 当前响应对象
+session 对应当前请求的客户会话对象
+out 对应当前响应对象的输出流
+application Web应用对象
+pageContext 封装当前请求内此JSP页面信息的对象
+page 指向页面自身的方式，相当于this关键字
+config 与当前JSP页面的Servlet对应的ServletConfig对象
+exception 其它地方抛出的Throwable对象，仅当<%@ pageisErrorPage=”True”%>时有效
+
+在web.xml中的servlet标签中用	<init-param>
+      						<param-name>参数名</param-name>
+      						<param-value>参数值</param-value>
+    					</init-param>来定义参数
+getInitParameter()方法用来调用初始化在web.xml中存放的参数。
+
+Servlet过滤器能够对Servlet容器的请求和响应对象进行检查
+Servlet过滤器在Servlet被调用之前检查Request对象，修改Request Header和Request内容
+Servlet过滤器在Servlet被调用之后检查Response对象，修改Response Header和Response内容。
+Servlet过滤器的过滤的内容:Servlet、 JSP、 HTML文件
+
+所有的Servlet过滤器类都必须实现javax.servlet.Filter接口。这个接口还有3个过滤器类必须实现的方法：
+ 初始化方法public void init (FilterConfig config)
+ 过滤方法public void doFilter(ServletRequest req,ServletResponse resp,FilterChain chain)
+ 销毁过滤器方法public void destroy( )
+
+url-pattern 中用/*过滤所有的请求，可以改动这里来改变过滤某个页面
+
+生存期：页面<请求<会话<应用。会话和应用不是安全的
+
+HttpSession session = request.getSession();获得用户当前的session
+invalidate(),销毁session
+setMaxInactiveInterval(int seconds)设置有效期
+HttpSessionListener接口，监听会话的创建和销毁，sessionCreated和sessionDestroyed两个方法
+HttpSessionAttributeListener接口，在你向session中存储，修改，删除数据的时候，进行监听。attributeAdded,attributeReplaced,attributeRemoved三个方法
+
+动作：以“ <jsp: 动作名 >” 开始，以“ </jsp:动作名> ” 结束
+jsp:include：在页面被请求的时候引入一个文件。 
+jsp:useBean：寻找或者实例化一个JavaBean。 
+jsp:setProperty：设置JavaBean的属性。 
+jsp:getProperty：输出某个JavaBean的属性。 
+jsp:forward：把请求转到一个新的页面。 
+<%-- 创建一个Users对象   并且对属性赋值
+    	jsp:useBean 的属性 scope 默认 page			调用Users 无参构造 创建一个对象
+    	jsp:setProperty的属性：					调用属性们的 setProperty 方法 来对属性赋值
+    		property  指定对象的属性名
+    		name 	指定操作的对象
+    		value   属性值
+    	jsp:getProperty 的属性：					调用属性的getProperty 来获取数据
+    		property  属性名
+    		name	对象名
+--%>
+<jsp:useBean id="user" class="com.zyw.bean.Users"/>
+<jsp:setProperty property="id" name="user" value="1"/>
+id是:<jsp:getProperty property="id" name="user"/>这三个动作都没有结束标签
+
+<%-- jsp动作的 请求转发  从当前页面转发到  forward2.jsp--%>
+    <jsp:forward page="forward2.jsp">
+    	<%-- 转发时 传的参数 可以是多个。。 写多个 jsp:param --%>
+    	<jsp:param value="value1" name="p1"/>
+	</jsp:forward>
+
+<%--jsp 动作 包含 
+   	 如果没有参数，将它写成独立标签
+    <jsp:include> 之间不能写注释 </jsp:include>
+--%>
+    <jsp:include page="include2.jsp">
+    	<jsp:param value="value2" name="p2"/>
+	</jsp:include>
+
+调用EL函数:${库名:方法名(参数) }。 ${my:formatMyName('lsx') }
+EL方法的程序处理类：其中的方法必须是静态方法 ，通常方法都是有返回值的。参数 是数字、字符串。
+类写完之后，需要tld，配置el方法类。tld文件一般都是直接复制到web-inf文件夹下，修改其中的库名和路径等
+<function>
+		<!-- 在页面中调用的方法名 -->
+	    <name>formatMyName</name>
+	    <!-- 处理类路径 -->
+	    <function-class>com.lsx.tag.MyFunctions</function-class>
+	    <!-- 对应处理类中的 哪个方法 -->
+	    <function-signature>java.lang.String formatMyName(java.lang.String)</function-signature>
+</function>
+
+ajax技术：
+1.创建请求对象XMLHttpRequest
+	var xmlHttp = null;
+	xmlHttp = new XMLHttpRequest();
+2.建立一个连接open()。参数：1.请求的方式  get/post，2.请求的 url，3.异步/同步 true异步   发送请求
+	xmlHttp.open("POST","ValidateServlet?uname="+uname,true);
+3.设置回调方法，处理响应  onreadystatechange
+	xmlHttp.onreadystatechange = callback;//在响应结束后，才会调用这个方法
+4.发送一个请求  xmlHttp.send(null);
+
+${param.name}==request.getParameter("name")
+${requestScope.name}==request.getAttribute("name")
+
+out.println("登录失败");  //在servlet 中显示的时候要指定文档类型，不然还是会显示乱码
+response.setContentType("text/html;charset=utf-8");
+
+在c:的一些标签中不能写注释。否则的话会报错
+
+EL表达式取代了jsp表达式<%= %>，EL表达式一般只用来取值
+
+如果能够找到id和scope相同的Bean实例，jsp:useBean动作将使用已有的Bean实例而不是创建新的实例
+
+三层架构是最基本的项目分层结果，而MVC则是三层架构的一个变体，MVC是一种好的开发模式。
+M 即Model(模型层)，主要负责出来业务逻辑以及数据库的交互
+
+V 即View(视图层)，主要用于显示数据和提交数据
+
+C 即Controller(控制器)，主要是用作捕获请求并控制请求转发
+
+
+三层:UI 界面层 BLL 业务逻辑层，DAL数据访问层，Model 实体层
+MVC中的的M 不是三层中的Model(实体层)，他其实包括三层中的 service,dao,bean,这是非常要注意的，这也是他们之间的区别的关键所在
+
+
+
+
+
+
+
+

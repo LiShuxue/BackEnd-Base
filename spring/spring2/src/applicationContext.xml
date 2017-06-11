@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<!-- 软盘/usb对象注入 
+		   创建一个软盘对象，此时就是用软盘保存，如果想用usb保存，就把这个声明的类路径换成USB的
+	-->
+	<bean class="com.lsx.demo.FloppyWriter" id="writer"/>
+	
+	<bean class="com.lsx.demo.Service" id="service">
+		<!-- 将软盘对象writer注入到Service的属性writer上 -->
+		<property name="writer">
+			<!-- 因为我是引用bean定义文件中的其他的 bean 所以用ref -->
+			<ref bean="writer"/>
+		</property>
+	</bean>
+
+</beans>

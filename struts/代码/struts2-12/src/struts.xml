@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<include file="struts-default.xml"/>
+	<!-- 允许ognl调用静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+	
+	<package name="def" extends="struts-default">
+		<action name="ognlAction" class="com.zyw.action.OgnlAction" method="ognlTest">
+			<result>/showognl.jsp</result>
+		</action>
+	</package>
+	
+	
+</struts>    

@@ -1,0 +1,5 @@
+建立一个事务管理器
+org.springframework.orm.hibernate3.HibernateTransactionManager
+
+建立一个userdao的事务代理对象
+org.springframework.transaction.interceptor.TransactionProxyFactoryBean

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="STU" schema="SYSTEM">
+		<primary-key>
+			<key-column name="SID" type="integer" />
+		</primary-key>
+	</table>
+	<table name="SCO" schema="SYSTEM">
+		<primary-key>
+			<key-column name="CID" type="integer" />
+			<key-column name="SID" type="integer" />
+		</primary-key>
+		<column name="SCORE" type="integer"></column>
+	</table>
+	<table name="COU" schema="SYSTEM">
+		<primary-key>
+			<key-column name="CID" type="integer" />
+		</primary-key>
+	</table>
+<table name="CHOSE" schema="SYSTEM">
+	<primary-key>
+		<key-column name="CID" type="integer" />
+		<key-column name="SID" type="integer"/>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

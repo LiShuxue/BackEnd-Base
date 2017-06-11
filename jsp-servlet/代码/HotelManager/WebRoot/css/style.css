@@ -1,0 +1,106 @@
+<link rel ="stylesheet" type ="text/css" href ="css/style.css ">
+		#ziti {
+			font-size: "+1";
+			color: white;
+		}
+		
+		
+		a {
+			text-decoration: none
+		} 
+		
+		#num1{
+			background-color:66ccff;
+		}
+		#num2{
+			background-color:cccccc;
+		}
+		
+		h5{
+			color:999966;
+		}
+		h4{
+			color: 66ccff;
+		}
+		h3{
+			color: 009900;
+		}
+		h2{
+			color:3399ff;
+		}
+		li{
+			color: 9999ff;
+		}
+		
+		#no{
+			width:20px;
+			float:left;
+		}
+		#line{
+			width:3px;
+			height: 115%;
+			background-color: #3399cc;
+			float: left;
+		}
+		#left{
+			float:left;
+		}
+		#right{
+			width: 15%;
+			height: 110%;
+			
+			float: left;
+		}
+		#main{
+			width:60%;
+			height: 80%;
+			float:left;
+			background-image: images/20.jpg;
+			
+				
+			
+		}
+		#foot{
+			
+		}
+		.nav li.navtop a{
+			display: block;
+		}
+		
+		.nav li.navTop ul{
+			display: none;
+		}
+		.nav li.navTop:hover ul {
+    		display: block;
+		}
+		iframe{
+			border:0px;
+		}
+		table.report {
+			font-size:13px;
+			color:#333333;
+			border-width:1px;
+			border-color: #999999;
+			border-collapse: collapse;
+		}
+		table.report th{
+			background-color: #c3dde0;
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+			
+		}
+		
+		table.report tr{
+			background-color: #d4e3e5;
+		}
+		table.report tr:HOVER{
+			background-color: yellow;
+		}
+		table.report td{
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #a9c6c9;
+		}

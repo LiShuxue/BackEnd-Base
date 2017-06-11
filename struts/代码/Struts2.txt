@@ -1,0 +1,174 @@
+Struts2-->struts第一个案例，也是属性驱动模式
+struts2-1-->通过ActionSupport类，来创建Action处理请求
+struts2-2-->DMI动态方法调用
+struts2-3-->通过DomainModel（域驱动模式）的方法接收请求参数(推荐使用)
+struts2-4-->通过ModelDriven（模型驱动模式）的方法接收请求参数
+struts2-5-1-->通过4个方式去操作web元素（web元素：request，response， session， application）第一种方式通过ActionContext
+struts2-5-2-->(推荐使用这种方法)通过实现RequestAware,SessionAware,ApplicationAware接口
+struts2-5-3-->通过 ServletActionContext 直接获取 Servlet API
+struts2-5-4-->通过实现ServletRequestAware接口来访问  Servlet API
+struts2-6-->默认action
+struts2-7-->全局result
+struts2-8-->自定义拦截器，通过实现Interceptor接口
+struts2-9-->自定义拦截器，通过继承AbstractInterceptor类（推荐使用）
+struts2-10-->自定义拦截器，通过继承MethodFilterInterceptor类，可以指定要拦截的方法
+struts2-11-->自定义拦截器综合应用，权限验证
+struts2-12-->OGNL以及struts2标签库
+struts2-13-->自动类型转换，基本类型
+struts2-14-->自定义类型转换器1---继承DefaultTypeConverter类
+struts2-15-->自定义类型转换器2---继承StrutsTypeConverter类
+struts2-16-->单个文件上传
+struts2-17-->多个文件上传
+struts2-18-->文件下载
+
+
+struts2只提供了视图和控制器，并没有模型
+
+action相当于一个servlet，控制器，不依赖容器，可以自动接收表单的输入
+通过ValueStack（值栈），可以直接从action中取值。 值栈就相当于一个容器，用来存放数据
+使用OGNL进行类型转换
+
+struts.xml中有package标签，package中又有action标签，action里面又有result标签
+
+框架的执行流程：
+1.当index.jsp提交的时候，请求到StrutsPrepareAndExecuteFilter上（称之为 核心过滤器，它会拦截所有的请求）
+2.StrutsPrepareAndExecuteFilter根据表单上action=“login”填写的值，在struts.xml中寻找对应的<action name="login">
+	--根据LoginAction里属性名（一定和页面表单元素 同名），框架调用属性的set方法，将请求数据保存到action中的属性上
+	（根据表单上的name的值去调用setName方法，而不是根据属性名）
+3.找到<action>后，会执行配置的Action类，通过method=“login”方法，来处理index的请求
+4.login()方法会调用service来执行业务
+5.login（）执行完之后，会返回一个“逻辑视图名称”是“ok”或者“error”,这个逻辑视图名称会与struts.xml中的<result name="">对应，
+	对应之后执行<result>中配置的“物理视图”来响应
+	
+jsp页面从action中取值的时候，可以直接通过el表达式或getAttribute，我们在action中并没有进行setAttribute，但是可以getAttribute。因为这是框架自动帮我们进行存储的
+数据的存储依赖于框架提供的拦截器功能，拦截器可以对请求进行拦截，进行逻辑处理：获取所有的请求参数，循环遍历设置到值栈中。
+Action中需要提供参数名称的set方法，框架会通过拦截器将请求参数获取到之后，会循环遍历将参数设置到值栈（栈顶对象）中。
+Username:${requestScope.username }<br>
+<%=request.getAttribute("username") %><br>
+Password:${password }
+
+struts.xml中package标签的namespace属性，可以产生不同的命名空间，从而区分不同类型的action，但是加上命名空间后，访问这个空间的action路径也要写上这个命名空间
+
+要写一个处理请求的方法，如果直接的重写父类的execute方法，就不用在struts.xml中配置Action的时候指定属性method了，只要有请求来，就会默认的调用execute()
+
+当有时候找不到的时候，怎么样都不好用的时候，记着namespace="/"
+
+1，属性驱动模式(属性很多时，不建议使用。)
+action编写方式：Action中需要提供参数名称的set方法，框架会通过拦截器将请求参数获取到之后，会循环遍历将参数设置到值栈（栈顶对象）中。
+jsp传输数据方式：<input name="username" type="text" >
+ 
+2，模型驱动模式(必须要实现模型驱动接口，属于侵入性开发方式，不推荐使用)，定义模型类bean：需要定义数据模型的类，将属性封装到数据模型类中，Action中只需要定义模型对象 的类型属性（必须创建对象赋值）。
+action的要求：模型对象的get/set属性并不是必须的。Action类需要实现ModelDriven接口，重写getModel()方法。
+jsp传输数据的方式：<input name="username" type="text" > 表单依然是模型对象的属性名称作为参数名称
+ 
+3，域驱动模式(推荐使用,无侵入性,Action中减少属性定义,便于数据管理和数据封装)，与属性驱动的原理是类似，也是通过参数拦截器，将请求参数获取后循环设置到值栈中。
+action的要求: 在Action对象中定义模型对象属性，并提供get/set方法
+jsp传输数据的方式：<input name="user.username" type="text" >表单名是   对象.属性    作为参数名称       
+
+如果访问一个不存在的action，就会默认的访问<default-action-ref>标签中name属性定义的action
+
+Action中result的各种转发类型(写在result标签的type属性里)：
+chain：处理action链，跳转到下一个action（是转发行为）
+redirectAction：重定向到一个action
+redirect：重定向到一个URL
+dispatcher:转发到jsp，这是type属性的默认值（不写的情况下）      
+
+<action name="my" class="demo.MyAction">
+	<!-- 从my 转发到 hello   action向action转发的情况 -->
+	<!-- <result type="chain">hello</result> -->
+			
+	<!-- 从my 重定向到  hello  action向action -->
+	<!-- <result type="redirectAction">hello</result> -->
+			
+	<!-- action直接从定向到  jsp或者某个URL -->
+	<!-- <result type="redirect">/index.jsp</result> -->
+</action>        
+
+重定向到其他包中的action的时候，要加两个参数，一个参数是actionName（action名），一个是namespace（命名空间）     
+<package name="def" extends="struts-default" namespace="/">
+	<action name="my" class="demo.MyAction">
+		<!-- 从my 重定向到  hello  action向action，而hello这个action是在其他package中的 -->
+		<result type="redirectAction">
+			<param name="actionName">hello</param>
+			<param name="namespace">/test</param>
+		</result>	
+	</action>
+</package>
+	
+<package name="def2" extends="struts-default" namespace="/test">
+	<action name="hello" class="demo.HelloAction"/>
+</package> 
+
+在result中还可以使用${属性名}表达式访问action中的属性（配置文件会报错，但是项目执行没问题） 
+
+全局result：<global-results>，多个action会响应相同的页面（或转发到相同的action时）。result写在global-results标签中
+
+struts.xml中可以通过<include file="a.xml"/>导入其他的配置文件
+
+拦截器和过滤器的区别：
+拦截器是基于java反射机制的，而过滤器是基于函数回调
+拦截器不依赖于servlet容器，而过滤器依赖于servlet容器
+拦截器只能对action请求起作用，而过滤器则可以对几乎所有的请求起作用
+拦截器可以访问action上下文、值栈里的对象，而过滤器不能
+在action的生命周期中，拦截器可以多次被调用，而过滤器只能在容器初始化时被调用一次
+
+可以在struts.xml中配置拦截器<interceptor name="" class=""></interceptor>,中间可以设置参数<param name="">value</param>
+多个拦截器可以包含在<interceptors></interceptors>标签中
+
+在action标签下引用这些拦截器<interceptor-ref name=""></interceptor-ref>,并且都要引用默认栈defaultStack,而且一般在第一句时引用
+还可以定义拦截器栈<interceptor-stack name=""></interceptor-stack>，将一些拦截器组合起来统一管理
+
+struts2的拦截器必须是无状态的，无状态就是指没属性
+
+自定义兰拦截器的实现方法：
+实现Interceptor接口
+继承AbstractInterceptor类（推荐使用）
+继承MethodFilterInterceptor类
+
+invocation.invoke()拦截器中执行action实例
+
+拦截器，在AOP（Aspect-Oriented Programming（面向方面编程））中用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略。 
+拦截器是动态拦截Action调用的对象。它提供了一种机制可以使开发者可以定义在一个action执行的前后执行的代码，也可以在一个action执行前阻止其执行。同时也是提供了一种可以提取action中可重用的部分的方式。
+
+Struts2的拦截器和Filter类似。在执行Action的execute方法之前，Struts2会首先执行在struts.xml中引用的拦截器，在执行完所有引用的拦截器的intercept方法后，会执行Action的execute方法。
+
+OGNL输出参数或某一范围的数据，必须配<s:property>标签，用# 
+获取Action属性，不用加#
+?取所有
+#this这个集合中当前对象
+
+attr,从request范围向 application范围查找
+
+构造Map：<s:set name="mapName" value="#{'key1':'value1','key2':'value2'}"/>
+
+在<s:url>使标签中用%{}来将{}中的内容以代码形式执行，如果不加%，就当成字符串。仅限于在这个标签中： 
+<s:url value="aaa?a=%{#mapName['key1']}"/>
+
+通过ognl表达式创建list 集合 ，并且遍历出集合中的值
+<s:set name="list" value="{'aaa','bbb','ccc'}"/>
+<!-- s:set 会默认存在page和request范围 -->
+<s:iterator var="item" value="#list">
+     <s:property/><br/>  <!-- 当前循环的元素 -->
+</s:iterator>
+<s:iterator>迭代标签，用来循环，里面可以没有var属性，显示的时候可以直接写<s:property>
+
+通过ognl表达式 进行逻辑判断<s:if test=""> </s:if>还有else if 和 else
+in或者not in可以判断是否在某个集合中
+
+通过ognl表达式 访问某个类的静态方法和值    <s:property value="@java.lang.Math@random()"/>
+
+checkbox或者输入a,b,c都可以转换成数组
+转换成集合要将控件名写成集合加下标:<input name="list[0]"/>
+转换成Map要将控件名写成map.key:<input name="map.key1"/>
+
+三种创建自定义类型转换器的方法：
+实现ognl.TypeConverter接口
+继承DefaultTypeConverter类(推荐使用，实现一个方法，里面要写if   else if)
+继承StrutsTypeConverter类（提供了两个方法，这个比较清晰，也可以用这个）
+
+在struts.xml中如果要用到某个属性，或数据，就一定要在action中写这个属性的get方法
+
+struts2主要做控制器，拦截器
+     
+
+

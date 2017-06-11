@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="pa" extends="struts-default" namespace="/">
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name="interceptor" class="com.lsx.interceptor.DemoInterceptor"></interceptor>
+		</interceptors>
+	
+		<!-- 配置登录 -->
+		<action name="login" class="com.lsx.action.LoginAction">
+			<result>/welcome.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+		
+		<!-- 配置显示机密 -->
+		<action name="show" class="com.lsx.action.ShowAction">
+			<!-- 引用拦截器 -->
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="interceptor"/>
+		
+			<result>/show.jsp</result>
+			<result name="input">/welcome.jsp</result>
+		</action>
+	</package>
+
+</struts>    

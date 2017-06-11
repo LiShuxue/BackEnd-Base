@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Struts_Proxy"
+  id="myeclipse.1378634590125"
+  context-root="/Struts_Proxy"
+  j2ee-spec="5.0"
+  archive="Struts_Proxy.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

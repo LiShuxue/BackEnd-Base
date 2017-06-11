@@ -1,0 +1,1 @@
+其实就是将action和service的配置文件去掉了

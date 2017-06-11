@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<!-- 创建哪个类的对象, class类路径，id对象名 -->
+	<!-- 以后，通过spring来获取这个对象，它的属性值将是hello，
+		  不用spring来获取，它依然是null	
+		  
+		 为什么能通过id获得对象
+		 	通过反射，使用包名类名，无参构造，实例化bean
+		 为什么属性helloword有了值
+		 	通过提供的属性，调用它的set方法，设置的值
+		 	
+	 -->
+	<bean class="com.lsx.demo.HelloBean" id="helloBean">
+		<property name="helloword" value="hello"/>
+	</bean>
+
+</beans>

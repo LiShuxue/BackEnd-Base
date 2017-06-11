@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+
+	<package name="default" extends="struts-default">
+		<action name="downLoad" class="com.zyw.action.DownLoadAction">
+			<!-- param为Action提供参数，属性filePath默认值就是 /upload/ 由action自己来读取，提供get/set-->
+			<param name="filePath">/upload/</param>
+			
+			<result type="stream">	<!-- 向客户端响应一个流 -->
+				<!-- 下载文件的类型 -->
+				<param name="contentType">application/zip</param>
+				<!-- action属性，默认值就是inputStream，可省略 -->
+				<param name="inputName">inputStream</param>	<!-- 哪个流 -->
+				<!-- 下载的文件名downfile ${downfile} test.rar-->
+				<param name="contentDisposition">filename="${downfile}"</param>
+				<!-- 文件输入复制到输出缓冲区的大小 -->
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	</package>
+</struts>    

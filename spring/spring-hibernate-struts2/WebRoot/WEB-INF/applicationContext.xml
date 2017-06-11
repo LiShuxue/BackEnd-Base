@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- 这里要加驱动，自己加 -->
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl">
+		</property>
+		<property name="username" value="system"></property>
+		<property name="password" value="231601"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/lsx/bean/Stu.hbm.xml</value></list>
+		</property>
+	</bean>
+	
+	<!-- stuDao中注入sessionFactory -->
+	<!-- 在dao里面应该是写对数据的操作吧，应该是增删改查，既然是这样的话，你要得到session，
+		既然要想得到session，那你得从SessionFactory里面得到，所以得将SessionFactory注入 -->
+	<bean class="com.lsx.dao.impl.StuDAO" id="stuDAO">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 在service中注入stuDao -->
+	<bean class="com.lsx.service.impl.StuService" id="stuService">
+		<property name="studao" ref="stuDAO"/>
+	</bean>
+	
+	<!-- 在action中注入service。 action默认是单例的，也就是线程不安全，每个人的请求都提交到一个action。所以可以加一个属性scope=“prototype”-->
+	<bean class="com.lsx.action.AddAction" id="addAction" scope="prototype">
+		<property name="service" ref="stuService"/>
+	</bean>
+</beans>

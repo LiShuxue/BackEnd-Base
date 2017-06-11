@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+
+<tlib-version>1.0</tlib-version>
+<jsp-version>2.0</jsp-version>
+<!-- 标签库的名字 -->
+<short-name>my</short-name>
+<!-- 标签库的访问路径 -->
+<uri>http://www.my-tag.com/mytag</uri>
+	
+	<function>
+		<!-- 在页面中调用的方法名 -->
+	    <name>formatMyName</name>
+	    <!-- 处理类路径 -->
+	    <function-class>com.lsx.tag.MyFunctions</function-class>
+	    <!-- 对应处理类中的 哪个方法 -->
+	    <function-signature>java.lang.String formatMyName(java.lang.String)</function-signature>
+ 	</function>
+
+ 
+
+	<function>
+	    <name>add</name>
+	    <function-class>com.lsx.tag.MyFunctions</function-class>
+	    <function-signature>java.lang.Integer add(int, int)</function-signature>
+ 	</function>
+ 	
+</taglib>

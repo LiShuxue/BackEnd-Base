@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>web9</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 可用编号，也可用异常类型 -->
+  <!-- 如果是404 跳转到error404.jsp页面 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error404.jsp</location>
+  </error-page>
+  
+  <!-- 如果执行index页面，它抛出了Exception异常，跳转到exce.jsp页面 -->
+  <error-page>
+  	<exception-type>java.lang.Exception</exception-type>
+  	<location>/exce.jsp</location>
+  </error-page>
+</web-app>

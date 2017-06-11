@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="def" extends="struts-default" namespace="/">
+		<!-- 配置一个默认 Action -->
+		<default-action-ref name="my"/>
+		
+		<action name="my" class="com.lsx.action.MyAction"/>
+		
+		<!-- 如果没有hello这个action，将执行默认的action  my ,如果有这个action的话，将不执行默认的，执行指定的action-->
+		<!-- <action name="hello" class="com.lsx.action.HelloAction"/> -->
+	</package>
+</struts>    

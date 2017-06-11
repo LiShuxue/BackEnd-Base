@@ -1,0 +1,16 @@
+package com.iteye.yuanyuan7891.gof.create.singleton;
+public class Singleton {
+    
+    private static Singleton sing;
+
+    private Singleton() {
+        //私有构造器
+    }
+    
+    public static Singleton getInstance() {
+        if (sing == null) {
+            sing = new Singleton();
+        }
+        return sing;
+    }
+}

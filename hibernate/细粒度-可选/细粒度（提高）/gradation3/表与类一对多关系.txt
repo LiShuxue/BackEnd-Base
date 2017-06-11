@@ -1,0 +1,4 @@
+子类不需要配置,
+
+在item3配置文件中,要注意 discriminator 出现的位置,
+它要放在property 的前面

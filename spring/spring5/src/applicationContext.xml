@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<!-- 创建两个bean实例 -->
+	<bean class="com.lsx.demo.Student" id="stu1"/>
+	<bean class="com.lsx.demo.Student" id="stu2"/>
+	
+	<bean class="com.lsx.demo.StudentBean" id="studentBean">
+		
+		<!-- 字符串数组属性的赋值 -->
+		<property name="stuArray">
+			<list>
+				<value>hello</value>
+				<value>welcome</value>
+			</list>
+		</property>
+		
+		<!-- 对象数组属性的赋值 -->
+		<property name="objArray">
+			<list>
+				<ref local="stu1"/>
+				<ref local="stu2"/>
+			</list>
+		</property>
+		
+		<!-- 集合List的赋值 -->
+		<property name="stuList">
+			<list>
+				<!-- 一般的类型，直接写value，对象类型的用ref -->
+				<value>ListString</value>
+				<ref local="stu1"/>
+				<ref local="stu2"/>
+			</list>
+		</property>
+		
+		<!-- Map的赋值 -->
+		<property name="stuMap">
+			<map>
+			
+				<!-- 两种方式，可以分开写，也可以写在一个标签中 -->
+				<entry key="k1">
+					<value>hello,zhangsan</value>
+				</entry>
+				<entry key="k2">
+					<ref local="stu1"/>
+				</entry>
+				
+				<entry key="k3" value="hello,lisi"/>
+				<entry key="k4" value-ref="stu2"/>
+			</map>
+			
+			<!-- 
+			对于map key与value参考某个bean
+			<entry key-ref="bean1" value-ref="bean2">
+			
+			对于使用泛型，属性是 Map<String,float> map
+			<property name="map">
+				<map>
+					<entry key="zhangsan" value="99.88"/>
+					<entry key="lisi" value="89.11"/>
+				</map>
+			</property>
+			
+			-->
+		</property>
+	</bean>
+
+</beans>

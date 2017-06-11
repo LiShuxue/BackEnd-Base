@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	
+	<!-- 采用带两个参数的构造来实例化，要注意顺序 -->
+	<bean id="stu" class="com.lsx.demo.Student">
+		<constructor-arg>	<!-- 通过index属性表示顺序，第一个为0，不用的话默认排序 -->
+			<value>lisi</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>18</value>
+		</constructor-arg>
+	</bean>
+	
+	
+	<!-- 对于两个都是一个参数的构造，根据参数类型来区分 -->
+	<bean id="time" class="java.util.Date"/>
+	<!-- 
+		stu2的构造参考了已有的bean，如下生成方式
+		
+		constructor-arg和property标签上都有ref属性
+		也可以直接指定 <constructor-arg ref="time">
+		也可以<constructor-arg type="java.util.Date">明确指明
+	 -->
+	<bean id="stu2" class="com.lsx.demo.Student">
+		<constructor-arg>		
+			<ref bean="time"/>
+		</constructor-arg>
+	</bean>
+	
+	
+	<!-- 参数与属性的区分 -->
+	<bean id="stu3" class="com.lsx.demo.Student">
+		<constructor-arg>
+			<value>zhangsan</value>
+		</constructor-arg>
+		
+		<property name="age" value="19"/>	<!-- value也可以这样 -->
+	</bean>
+	
+	<!-- 
+		<value>zhangsan</value> 如果要设置空值
+		<value><null/></value>
+		
+		<value>zhangsan</value> 如果要设置空字符串
+		<value></value>
+		
+		如果要参考的bean在同一个文件中，可以使用<ref local="beanName"/>
+		
+		如果bean只需要被参考一次，在某属性上。如下
+		<property name="time">
+			<bean class="java.util.Date"/>
+		</property>
+		
+		如果在实例化一个bean时，需要其他bean在之前实例化
+		<bean id="one" class="" depends-on="two"/>
+		<bean id="two" class=""/>
+		在取得one之前，会实例化two，如果需要多个，逗号隔开。
+	 -->
+</beans>
