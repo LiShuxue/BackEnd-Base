@@ -1,24 +1,24 @@
 package com.zyw;
 public class Test {
 
-	public static int num = 0;	//±»·ÃÎÊµÄÊı¾İ
+	public static int num = 0;	//è¢«è®¿é—®çš„æ•°æ®
 	
 	public static void main(String[] args) {
 		/**
-		 *  Ïß³Ì²¢·¢·ÃÎÊ
+		 *  çº¿ç¨‹å¹¶å‘è®¿é—®
 		 */
-		//´´½¨Á½¸öÏß³Ì£¬ÈÃËûÃÇ¶¼Ö´ĞĞ
+		//åˆ›å»ºä¸¤ä¸ªçº¿ç¨‹ï¼Œè®©ä»–ä»¬éƒ½æ‰§è¡Œ
 		ThreadA a = new ThreadA();
 		ThreadB b = new ThreadB();
 		a.start();
 		b.start();
-		//ÒÔÉÏÁ½¸öÏß³ÌÍ¬Ê±Ö´ĞĞ
+		//ä»¥ä¸Šä¸¤ä¸ªçº¿ç¨‹åŒæ—¶æ‰§è¡Œ
 	}
 
 }
 
 /**
- * Á½¸öÏß³Ì¶¼µ÷ÓÃÁË test()·½·¨
+ * ä¸¤ä¸ªçº¿ç¨‹éƒ½è°ƒç”¨äº† test()æ–¹æ³•
  * @author Administrator
  *
  */

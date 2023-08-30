@@ -4,7 +4,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		/**
-		 *  this ÒıÓÃ×ÔÉí¹¹Ôì·½·¨
+		 *  this å¼•ç”¨è‡ªèº«æ„é€ æ–¹æ³•
 		 */
 		//Student s = new Student(10);
 		Student s = new Student();
@@ -15,21 +15,21 @@ public class Test {
 class Student{
 
 	/**
-	 * ÔÚ¸ÃÎŞ²Î¹¹ÔìÖĞµ÷ÓÃÏÂ·½µÄÓĞ²Î¹¹Ôì£¬ÒÀÈ»Ğ´ÔÚµÚÒ»ĞĞ
+	 * åœ¨è¯¥æ— å‚æ„é€ ä¸­è°ƒç”¨ä¸‹æ–¹çš„æœ‰å‚æ„é€ ï¼Œä¾ç„¶å†™åœ¨ç¬¬ä¸€è¡Œ
 	 */
 	public Student(){
 		this(20);
-		System.out.println("ÎŞ²Î¹¹Ôì");
+		System.out.println("æ— å‚æ„é€ ");
 	}
 	
 	/**
-	 * ÔÚ¸Ã¹¹Ôì·½·¨ÖĞµ÷ÓÃÉÏ·½µÄÎŞ²Î¹¹Ôì
-	 * Ê¹ÓÃthisÀ´µ÷ÓÃ£¬µ«ÊÇ±ØĞëĞ´ÔÚ¹¹Ôì´úÂëÖĞµÄµÚÒ»ĞĞ
+	 * åœ¨è¯¥æ„é€ æ–¹æ³•ä¸­è°ƒç”¨ä¸Šæ–¹çš„æ— å‚æ„é€ 
+	 * ä½¿ç”¨thisæ¥è°ƒç”¨ï¼Œä½†æ˜¯å¿…é¡»å†™åœ¨æ„é€ ä»£ç ä¸­çš„ç¬¬ä¸€è¡Œ
 	 * @param sid
 	 */
 	public Student(int sid){
 		//this();
-		System.out.println("²ÎÊısidµÄ¹¹Ôì");
+		System.out.println("å‚æ•°sidçš„æ„é€ ");
 	}
 }
 

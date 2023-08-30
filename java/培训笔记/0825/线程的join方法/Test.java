@@ -11,7 +11,7 @@ public class Test {
 }
 
 /**
- * ´´½¨Á½¸öÏß³Ì£¬ÔÚÏß³ÌBÖĞ·ÃÎÊÏß³ÌAµÄ¶ÔÏó£¬²¢µ÷ÓÃÏß³ÌA¶ÔÏóµÄjoin()·½·¨
+ * åˆ›å»ºä¸¤ä¸ªçº¿ç¨‹ï¼Œåœ¨çº¿ç¨‹Bä¸­è®¿é—®çº¿ç¨‹Açš„å¯¹è±¡ï¼Œå¹¶è°ƒç”¨çº¿ç¨‹Aå¯¹è±¡çš„join()æ–¹æ³•
  */
 class ThreadA extends Thread{
 	@Override
@@ -24,7 +24,7 @@ class ThreadA extends Thread{
 
 class ThreadB extends Thread{
 	private ThreadA a;
-	//Í¨¹ı¹¹Ôì·½·¨£¬¸³ÖµÊôĞÔ Ïß³ÌA
+	//é€šè¿‡æ„é€ æ–¹æ³•ï¼Œèµ‹å€¼å±æ€§ çº¿ç¨‹A
 	public ThreadB(ThreadA a){
 		this.a = a;
 	}
@@ -33,7 +33,7 @@ class ThreadB extends Thread{
 		for (int i = 0; i < 10; i++) {
 			if( i > 5){
 				try {
-					//µ±Ç°Ïß³ÌÈÃ³öÖ´ĞĞÈ¨£¬ÈÃAÖ´ĞĞ£¬ÔÙAÖ´ĞĞ½áÊøºó£¬µ±Ç°µÄBÏß³Ì²Å»á¼ÌĞø
+					//å½“å‰çº¿ç¨‹è®©å‡ºæ‰§è¡Œæƒï¼Œè®©Aæ‰§è¡Œï¼Œå†Aæ‰§è¡Œç»“æŸåï¼Œå½“å‰çš„Bçº¿ç¨‹æ‰ä¼šç»§ç»­
 					this.a.join();
 				} catch (InterruptedException e) {
 					e.printStackTrace();

@@ -1,53 +1,53 @@
-hibernate1-->��һ��hibernate������hibernate���ã����ݿ����ɾ�Ĳ飬�Լ�get/load������
-hibernate2-->clob,blob�Ĵ�ȡ
-hibernate3-->��������ʱ��β���ʵ��������δ�����
-hibernate4-->���������״̬�����ɣ��־ã�����
-hibernate5-->һ��һ
-hibernate6-->һ�Զ�
-hibernate7-->��Զ�
-hibernate8-->hql��sql
+hibernate1-->第一个hibernate案例，hibernate配置，数据库的增删改查，以及get/load的区别
+hibernate2-->clob,blob的存取
+hibernate3-->联合主键时如何产生实体类与如何存数据
+hibernate4-->对象的三种状态，自由，持久，游离
+hibernate5-->一对一
+hibernate6-->一对多
+hibernate7-->多对多
+hibernate8-->hql与sql
 
 
 
 
 
-Database Explorer��ͨ���������ǵ�MyEclipse ���ӵ�ָ�����ݿ⣬�Ժ�Ϊ�����������ݿ����ӵ�����
-��һ���ã���Ҫ����һ����������ͬ�����ݿⴴ����ͬ�����������Ժ����ٴ����ˣ�ֱ���á�
+Database Explorer，通过它让我们的MyEclipse 连接到指定数据库，以后，为我们生成数据库连接的配置
+第一次用，需要创建一个驱动（不同的数据库创建不同的驱动），以后不用再创建了，直接用。
 
-// ����src�µ�Ĭ�ϵ� hibernate.cfg.xml ��������ļ�
+// 加载src下的默认的 hibernate.cfg.xml 这个配置文件
 Configuration config = new Configuration().configure();
-// ��ȡһ��session����������������ݿ����ã�Ϊ�㽨�����ݿ����ӻỰ
+// 获取一个session工厂，根据你的数据库配置，为你建立数据库连接会话
 SessionFactory factory = config.buildSessionFactory();
-// ����һ���µĻỰ,���˻Ự����Ϳ���ֱ��ȥ�������ݿ���ˡ� �൱��getConnection()
+// 创建一个新的会话,有了会话，你就可以直接去操作数据库表了。 相当于getConnection()
 Session session = factory.openSession();
 
- �ӳټ��أ��ڷ�������������Ե�ʱ�򣬲Ż�ִ�����ݿ������
- ��getִ��֮�� ��ִ��load ��load��ȥʹ��֮ǰget��ѯ�Ľ����
-������������ǳ�Ϊ �����ѯ ��֮ǰ��get��ѯ��󣬽��������档 loadֱ��ʹ�û��档û���������ݿ������
-get��load ����������棬 Ҳ�������û��档
+ 延迟加载：在访问这个对象属性的时候，才会执行数据库操作。
+ 在get执行之后， 再执行load ，load会去使用之前get查询的结果。
+这种情况，我们称为 缓存查询 ，之前的get查询完后，将产生缓存。 load直接使用缓存。没有连接数据库操作。
+get和load 都会产生缓存， 也都会利用缓存。
 
-<property name="show_sql">true</property>������ʾsql��䡣����Ҫ����<mapping>���档����hibernate.cfg.xml��
+<property name="show_sql">true</property>可以显示sql语句。但是要加在<mapping>上面。加在hibernate.cfg.xml中
 
-��1������״̬(Transient)��
-�ٲ���Session�Ļ����У������κε�Sessionʵ���������
-�������ݿ���û����֮���Ӧ�ļ�¼��
-��2���־�״̬(Persistent)��
-����Session�Ļ����У���Sessionʵ���������save����
-�������ݿ��д�����֮���Ӧ�ļ�¼��
-(3)����״̬(Detached)/�ѹ�״̬
-�ٲ���Session�Ļ����У������κε�Sessionʵ���������
-�������ݿ��д�����֮���Ӧ�ļ�¼��(ǰ��������û������Sessionʵ��ɾ��������¼)��
+（1）自由状态(Transient)：
+①不在Session的缓存中，不与任何的Session实例相关联。
+②在数据库中没有与之相对应的记录。
+（2）持久状态(Persistent)：
+①在Session的缓存中，与Session实例相关联。save方法
+②在数据库中存在与之相对应的记录。
+(3)游离状态(Detached)/脱管状态
+①不在Session的缓存中，不与任何的Session实例相关联。
+②在数据库中存在与之相对应的记录。(前提条件是没有其他Session实例删除该条记录)。
 
-�������ɵ�ʱ������������һ��һ����Զ���Ҫ��ѡ�������������Ҫ
+反向生成的时候，联合主键，一对一，多对多需要勾选，其他情况不需要
 
-����cascade="all"�󣬽����������໥set�󣬻�һ�����ӵ����ݿ�
-��ѯ��ʱ��Ĭ��Ĭ��ʹ�ü�����ѯ����һ��Ҳ������һ����
+添加cascade="all"后，建立级联。相互set后，会一起添加到数据库
+查询的时候默认默认使用级联查询（查一个也会查出另一个）
 
 <generator class="foreign">
 	<param name="property">person</param>
-</generator>����������������������ɷ�ʽ����������������Person��������
+</generator>可以声明这个表的主键生成方式，是依赖其他表（Person）的主键
 
-set��list����Ӧ����for eachѭ������ȡ���е�Ԫ��
+set，list对象应该用for each循环来获取其中的元素
 
-hql��ռλ������0��ʼ��hql���������������Ǳ���
+hql中占位符，从0开始。hql中是用类名，不是表名
 

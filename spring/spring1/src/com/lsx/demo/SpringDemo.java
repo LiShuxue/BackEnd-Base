@@ -6,20 +6,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringDemo {
 
 	public static void main(String[] args) {
-		//Í¨¹ıspringÀ´»ñÈ¡ÅäÖÃÎÄ¼şÖĞÎªÊôĞÔhelloword¸³µÄÖµ
-		//¼ÓÔØsrcÏÂµÄxml
+		//é€šè¿‡springæ¥è·å–é…ç½®æ–‡ä»¶ä¸­ä¸ºå±æ€§hellowordèµ‹çš„å€¼
+		//åŠ è½½srcä¸‹çš„xml
 		ApplicationContext context = 
 				new ClassPathXmlApplicationContext("applicationContext.xml");
-		//»ñµÃxmlÖĞÅäÖÃµÄHelloBean¶ÔÏó£¬getBean²ÎÊı¾ÍÊÇxmlÖĞµÄid
+		//è·å¾—xmlä¸­é…ç½®çš„HelloBeanå¯¹è±¡ï¼ŒgetBeanå‚æ•°å°±æ˜¯xmlä¸­çš„id
 		HelloBean hello1 = (HelloBean)context.getBean("helloBean");
 		System.out.println(hello1.getHelloword());
 		
-		//ÈôÊÇ²»ÓÃspringµÄ»°,ÊôĞÔÖµ»¹ÊÇÔ­À´µÄÄ¬ÈÏÖµ
+		//è‹¥æ˜¯ä¸ç”¨springçš„è¯,å±æ€§å€¼è¿˜æ˜¯åŸæ¥çš„é»˜è®¤å€¼
 		HelloBean hello2 = new HelloBean();
 		System.out.println(hello2.getHelloword());
 		
-		//springÄ¬ÈÏbean ÊÇµ¥ÀıµÄ¡£Êä³öµÚÒ»¸öHelloBean¶ÔÏó,ÓÖÊä³öÒ»¸öĞÂµÃµ½µÄHelloBean¶ÔÏó
-		//ÔÚ <bean> ÉÏÊ¹ÓÃÊôĞÔ   scope="prototype"  ¾ÍÈ¡Ïûµ¥Àı
+		//springé»˜è®¤bean æ˜¯å•ä¾‹çš„ã€‚è¾“å‡ºç¬¬ä¸€ä¸ªHelloBeanå¯¹è±¡,åˆè¾“å‡ºä¸€ä¸ªæ–°å¾—åˆ°çš„HelloBeanå¯¹è±¡
+		//åœ¨ <bean> ä¸Šä½¿ç”¨å±æ€§   scope="prototype"  å°±å–æ¶ˆå•ä¾‹
 		System.out.println(hello1);
 		System.out.println(context.getBean("helloBean"));
 	}

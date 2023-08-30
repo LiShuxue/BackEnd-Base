@@ -7,38 +7,38 @@ import com.zyw.bean.Users;
 public interface IUsersDAO {
 
 	/**
-	 * Ìí¼ÓÓÃ»§
+	 * æ·»åŠ ç”¨æˆ·
 	 * @param user
 	 */
 	public void add(Users user);
 	
 	/**
-	 * Í¨¹ıÓÃ»§Ãû²éÓÃ»§
+	 * é€šè¿‡ç”¨æˆ·åæŸ¥ç”¨æˆ·
 	 * @param uname
 	 * @return
 	 */
 	public Users getUserByName(String uname);
 	
 	/**
-	 * ²éÑ¯ÓÃ»§
-	 * @param page µ±Ç°Ò³Êı
-	 * @param count  ÏÔÊ¾ÌõÊı
+	 * æŸ¥è¯¢ç”¨æˆ·
+	 * @param page å½“å‰é¡µæ•°
+	 * @param count  æ˜¾ç¤ºæ¡æ•°
 	 * @return
 	 */
 	public List<Users> queryUsers(int page,int count);
 	
 	/**
-	 * »ñÈ¡ÓÃ»§×ÜÈËÊı
+	 * è·å–ç”¨æˆ·æ€»äººæ•°
 	 */
 	public Integer getUsersCount();
 	
 	/**
-	 * ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+	 * ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
 	 */
 	public void updateUser(Users user);
 	
 	/**
-	 * É¾³ıÓÃ»§
+	 * åˆ é™¤ç”¨æˆ·
 	 */
 	public void deleteUser(Integer id);
 }

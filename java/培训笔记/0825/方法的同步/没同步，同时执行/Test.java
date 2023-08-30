@@ -3,14 +3,14 @@ public class Test {
 
 	public static void main(String[] args) {
 		/**
-		 *  ·½·¨µÄÍ¬²½
+		 *  æ–¹æ³•çš„åŒæ­¥
 		 */
-		//´´½¨Á½¸öÏß³Ì£¬ÈÃËûÃÇ¶¼Ö´ĞĞ
+		//åˆ›å»ºä¸¤ä¸ªçº¿ç¨‹ï¼Œè®©ä»–ä»¬éƒ½æ‰§è¡Œ
 		ThreadA a = new ThreadA();
 		ThreadB b = new ThreadB();
 		a.start();
 		b.start();
-		//ÒÔÉÏÁ½¸öÏß³ÌÍ¬Ê±Ö´ĞĞ
+		//ä»¥ä¸Šä¸¤ä¸ªçº¿ç¨‹åŒæ—¶æ‰§è¡Œ
 	}
 	
 	public static void test(){
@@ -27,7 +27,7 @@ public class Test {
 }
 
 /**
- * Á½¸öÏß³Ì¶¼µ÷ÓÃÁË test()·½·¨
+ * ä¸¤ä¸ªçº¿ç¨‹éƒ½è°ƒç”¨äº† test()æ–¹æ³•
  * @author Administrator
  *
  */

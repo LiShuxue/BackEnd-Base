@@ -1,0 +1,252 @@
+可以通过给定路径名的字符串（绝对路径）转换成抽象路径名来实例化文件对象，路径要加双引号""，分割符可以用/或者\\。这种创建用的较多
+或者通过给定File的uri转换成抽象路径名来实例化文件对象。uri表示一个统一资源标识符 (URI) 引用。网络资源或相对资源
+或者通过父路径，子路径。或者是父文件对象，子路径。路径都可以直接是一个文件，或者是文件夹，文件
+
+创建一般都是用的绝对路径， 只有获取的时候才会用到相对路径
+
+boolean createNewFile()可以创建一个新文件
+File file = new File(c:\\hello.txt);
+file.createNewFile(); 若此文件已存在，返回false，否则创建此文件，并返回true
+
+File类实例化，比如 File f=new File("E:/file_ceshi/02.rmvb");
+只是指向了这个02.rmvb文件，如果不创建02.rmvb，此文件是不存在的。因为代码只是声明不是运行，否则会出错
+
+在指定路径或默认系统临时文件夹下创建临时文件，提供文件前后缀
+File.createTempFile("hello", "123", File directory（文件路径）如 new File("C:\\"))
+
+file.exists()判断指定的路径或文件是否存在,返回true或false
+file.delete()删除指定的路径或文件，删除成功返回true，否则返回false
+equals（Oject obj）返回此抽象路径名是否与给定的对象相等
+canRead(),canWrite(),判断是否可读可写
+String[] list(),返回一个字符串数组，数组中的内容是指定路径下的路径，或文件的名称 的字符串
+getAbsolutePath(),返回绝对路径的字符串
+getName(),返回文件名，不包括路径名
+getPath()返回相对路径名
+File[] listFiles() 返回一个文件对象数组，包含此路径下的所有的文件对象
+boolean renameTo(File dest)将调用该函数的对象移动至一个新位置，如果该位置已存在，返回false，否则将文件移动过去，并返回true（移动的时候也可以重命名）
+long length() 返回此文件的大小，以byte为单位
+
+boolean mkdir() 创建此抽象路径名指定的目录（最后一个）。如c:\\a\\b\\c。  a,b如果不存在的话，c无法创建
+File file = new File(c:\\a\\b\\c);  file.mkdir();  什么都不做
+boolean mkdirs() 创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。注意，如果此操作失败，可能已成功创建了一些必需的父目录
+如c:\\a\\b\\c。  a,b如果不存在的话，c会被创建，且a.b也会被创建
+File file = new File(c:\\a\\b\\c);  file.mkdirs(); 全部创建
+
+输入流是从外界到内存里（程序里）
+
+输入流 ：字节流（InputStream），字符流（ Reader）
+输出流： 字节流（OutputStream），字符流（ Writer）
+他们都是抽象类，父类都是Object，不能实例化。用的时候需要创建他们子类的对象，通常使用多态来创建他们子类的对象
+字符流的底层其实也是通过字节流操作的
+字符流可以按行读取
+
+输入字节流（InputStream）。创建一个文件输入流对象，使用多态 InputStream in = new FileInputStream(file 或  路径);参数可以是一个文件对象或一个路径
+int read() 一次读取一个byte的数据，返回这个byte数据的值，如果没有数据可以读了，会返回” -1”
+int read(byte[] buffer) 把所读取到的数据放在这个byte数组中，返回读取的数据的数量
+int read(byte[] buffer,int offset,int length)读取length个字节，并存储到一个字节数组buffer中，并从offset位置开始，返回实际读取的字节数
+void close() 关闭此输入流并释放与该流关联的所有系统资源
+
+输出 字节流（OutputStream）
+void write(byte[] buffer) 将要输出的数组先放在一个byte数组中，然后用这个方法一次把一组数据输出出去
+void write(byte[] buffer,int off,int len)将指定字节数组中从偏移量 off 开始的 len 个字节写入此输出流
+abstract void write(int b) 将指定的字节写入此输出流
+void close() 关闭此输出流并释放与此流有关的所有系统资源
+
+关闭流的时候后开的流先关掉
+
+字符流不适合读取图片，声音，视频，他们应该通过字节流读取。字符流适合读取文本
+
+处理流类:缓冲(Buffered),字符和字节转,对象序列化,特定数据类型访问
+
+BufferedInputStream(InputStream in) 创建了一个带有32字节缓冲区的缓冲输入流，in是一个输入流对象
+BufferedInputStream(InputStream in, int size)创建了一个带有size大小缓冲区的缓冲输入流，size以字节为单位。
+同理，BufferedOutputStream(OutputStream out).  BufferedOutputStream(OutputStream out, int size)
+buffered 中只有read()和read(byte[], off, len)方法.同理只有write()和write(byte[], off, len)方法
+read(byte[] buffer)和write(byte[] buffer)是父类FileInputStream中的方法
+
+不管是输入或输出时，每次都是先将数据输入或输出到它自己的缓存中，当缓存满了的时候再一次性的通过流输出出去
+
+flush() 强制输出缓冲区中的所有数据，而不必等到缓冲区满，用的时候要写在close之前，以保证关闭之前完成了所有的输出
+
+对象序列化是指将对象转换为字节序列的过程。 反序列化则是根据字节序列恢复对象的过程
+序列化，就是将你的“对象”保存在指定的文件中，保存对象的时候，千万别忘了它的属性和属性的值
+过程：
+1.你要保存的对象的类必须要实现Serializable接口，这个接口没有具体的实现方法，主要用来标识这个类的对象可以序列化,如果一个类可以被序列化，它的所有子类都可以序列化
+2.生成你要保存的对象
+3.将对象存入文件。用ObjectOutputStream 将 Java 对象的基本数据类型和图形写入 OutputStream，即参数是一个outputStream的对象。
+	生成一个对象序列化   的对象。ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\stu.ser"));对象状态序列化.ser文件 
+	通过这个对象来保存每一个要保存的对象，最后要存一个空对象。oos.writeObject(s1);oos.writeObject(null);
+	关闭这个序列化对象
+4.读取文件中的对象。用ObjectInputStream 对以前使用 ObjectOutputStream 写入的基本数据和对象进行反序列化。
+	生成一个对象反序列化   的对象。ObjectInputStream ois = new ObjectInputStream(new FileInputStream("c:\\stu.ser"));
+	可以通过循环来用这个对象去读取每一个已保存的对象，读到null时终止循环。ois.readObject()
+	将读取到的对象强转为他原来的类型
+	关闭这个反序列化的对象
+	
+transient修饰的属性不进行序列化的操作，起到一定消息屏蔽的效果。要序列化的对象的类属性应该为私有
+被transient修饰的属性可以正确的创建，但被系统赋为默认值。即int类型为0， String类型为null
+
+线程:继承Thread类或实现Runnable接口
+实现Runnable接口的类的对象不能直接调start()方法，需要用这个对象当参数再实例化一个Thread类的对象，这个Thread类的对象再去调start()方法
+使用Runnable接口可以避免由于JAVA的单继承性带来的局限
+isAlive(),判断线程是否还未终止
+setPriority()/getPriority(),设置和获取线程的优先级
+join()方法，某线程中调用其他线程的join方法。可以让出执行权，让其他线程运行完后该线程运行
+yield()方法，让出CPU，让当前线程进入就绪队列
+线程的优先级用数字表示，范围从1到10，一个线程缺省的优先级是5
+stop()线程终止方法,已过时。interrupt(),粗暴的终止。
+可通过使用一个标志指示 run 方法退出，从而终止线程
+void wait()导致当前的线程等待，直到其他线程调用此对象的notify()方法或 notifyAll() 方法。
+void notify()唤醒在此对象监视器上等待的单个线程。
+void notifyAll()唤醒在此对象监视器上等待的所有线程。
+等待和唤醒的时候都要进行同步,synchronized
+
+方法被同步（synchronized）之后，他只能供一个线程去访问，当该线程访问执行结束后，这个方法才能被其他的线程访问
+
+集合是用来存对象的，只能包含引用类型的对象，如String，数组，类的对象等等
+除了8种基本的数据类型， 其他的都是引用类型。 String是一个特殊的引用类型
+
+可以通过包装类（封装类）来将基本数据类型转换为对象，也叫打包，装箱
+
+Collection中可以放不同类型的数据，是Set接口和List接口的父类，Collection接口和Map接口是两个完全不同的
+Set － 无序的集合；不允许重复，HashSet
+List － 有序的集合；允许重复，ArrayList、 LinkedList
+用的时候多态到List就行，不必多态到Collection。而多态以后只能调他多态到的父类中有的方法，而他自己扩展的方法不能调
+List list = new Arraylist();而LinkedList一般不进行多态。
+list.add()添加
+list.size()获得其中已有元素的数量，而不是长度，因为其有个默认长度10
+list.get(i)得到i位置的元素
+list.clear()清空集合
+list.contains(),查找集合中是否包含某个元素，返回布尔
+list.indexOf(Object o),查找某个元素第一次出现的索引，从0开始
+list.isEmpty()判断集合是否为空
+list.remove(int index),通过索引删除该元素，并返回该元素
+remove(Object o),移除某个对象，如果存在，就移除并返回true，否则返回false,如果想删除其中的某个数字，要用包装类，不然会将其当成索引。list.remove(new Integer(200));
+set(int index, E element) 用指定的元素替代此列表中指定位置上的元素。返回被替换调的元素
+toArray(),将集合中的元素按适当的顺序转换为数组返回出去
+
+for(Object obj : list){             //list中存的是学生（Student）对象
+	Student s = (Student)obj;       //记住，这里需要强转，但是如果list加了泛型以后，就可以直接用，不需要强转
+	System.out.println(s.getId() + "\t" + s.getName());
+}
+
+将一个对象保存在集合中，该对象的状态改变了，集合中保存的对象的状态也会改变，因为保存对象保存的是对象的引用
+集合里面也是可以存集合的
+
+LinkedList类的特有方法
+void addFirst(Object o) 将给定元素插入此列表的开头
+void addLast(Object o) 将给定元素追加到此列表的结尾
+Object getFirst() 返回此列表的第一个元素
+Object getLast() 返回此列表的最后一个元素
+Object removeFirst() 移除并返回此列表的第一个元素
+Object removeLast() 移除并返回此列表的最后一个元素
+
+Iterator对象称作迭代器， 用来方便的实现对容器内的元素进行遍历操作。Iterator也是一个接口
+所有实现了Collection接口的集合类都有一个iterator( )方法， 返回一个实现了Iterator接口的对象
+Iterator是为遍历而设计， 能够从集合中取出元素和删除元素， 但是没有添加元素的功能
+Iterator的功能上比较简单， 使用中， 只能单向移动
+next()获取下一个元素
+hasNext()判断下一个还有没有元素
+通过while循环来操作迭代器
+
+void sort(List list) 对一种List做排序
+
+Map中key是唯一的，存储的内容的顺序是无序的，key可以是数字，可以是字符串，可以是对象等任何形式。key和value都是Object类型的
+map.keySet();获取所有的键
+map.get(key)，这个key可以填任意的值，可以填错误的值，不会报错， 只是填写不对的key就会找不到对应的value
+
+Hashtable是线程安全的， 也就是说是同步的， 而HashMap是线程不安全的， 不是同步的。
+HashMap允许将null作为一个key或者value， 而Hashtable不允许
+
+集合加上泛型以后，获取数据的时候就不需要强制转换了，即不需要用object去接收，直接用自己的类型接收就行
+Map也可以用泛型，泛型去规定key和value的类型
+
+map.put(key， value)方法返回：与 key 关联的旧值；如果原来的 key 没有任何映射关系，则返回 null。（返回 null 还可能表示该映射之前将 null 与 key 关联。）
+syso（map.put(1.2)）,输出null
+syso（map.put(1.3)）,输出2.  
+syso（map.put(1.4)）,输出3
+
+网络编程，socket
+服务器端
+//1.实例化serversocket.提供一个端口号，捕获处理异常。ServerSocket ss = new ServerSocket(6677);
+//2.写一个死循环，一直监听客户端
+//3.调用serversocket的accept方法去监听客户端的连接，会返回客户端的socket
+//4.通过输入流来获取客户端发送的信息，参数是s.getInputStream(),s是获取到的客户端的
+//5.通过输入流对象调用readUTF()等方法来读取发来的信息。readUTF()只是读取字符串信息。如String str = in.readUTF();
+s.getInetAddress()可以获取IP地址				
+s.getPort()可以获得端口号。这个端口号s.getPort()是客户端socket的唯一标识，因为s是客户端的socket
+//6.通过输出流来向客户端发送响应信息
+//7.关闭资源
+
+客户端
+//1.创建一个访问服务的客户端socket，参数为服务器的IP地址和端口号。Socket s = new Socket("127.0.0.1", 6677);
+//2.通过输出流来向服务器端发送的信息
+//3.通过输出流对象调用writeUTF()等方法来发送要发送的信息。writeUTF()只是发送字符串信息。如out.writeUTF("hello 服务器");
+//4.获取输入流，并读取服务器端的响应信息
+//5.关闭资源
+
+JDBC连接数据库。具体步骤
+将数据库驱动jar包导入项目。项目中新建lib文件夹，将jar包复制进来，然后右键build path
+//1、加载驱动      Class.forName("oracle.jdbc.driver.OracleDriver");
+//2、连接数据库，通过java.sql.Connection接口
+	//新建Connection对象
+	//url 数据库连接字符串
+	//user 数据库用户名
+	//password  密码
+Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL", "system", "231601");
+//3、操作数据库中的数据
+	通过Connection对象调用createStatement()方法来创建一个 Statement对象来将 SQL语句发送到数据库。 Statement stmt = con.createStatement();
+	定义sql语句，这个语句必须在数据库执行过，以确保没错误。注意，sql语句最后不要带分号。String sql = "insert into lsx.student values ('s013', '王七', 20, '男')";
+	如果需要执行增加，删除，修改的，需要Statement对象调用executeUpdate(sql)方法，执行给定的sql语句，返回一个int数，就是受影响的行数。int count =  stmt.executeUpdate(sql); 
+	如果需要查询的话，需要Statement对象调用executeQuery(sql)方法，该方法返回一个结果集ResultSet。 ResultSet rs = stmt.executeQuery(sql);
+	rs.getMetaData()得到结果集(rs)的表结构信息，比如字段数、字段名等。
+	rs.getMetaData().getTableName(1)就可以返回表名
+	rs.getMetaData().getColumnCount()取得列数
+	rs.next()判断是否有下一行，返回布尔
+	rs.getString(int columnIndex)获取此 ResultSet对象的当前行中指定列的值,参数为第几列，从1开始。也可以getInt()等，注意类型
+	这个get方法，参数还可以直接用字段名（列名）。也就是说可以用第几列，也可以用对应的列的列名，当然还要用对应的类型
+//4.关闭数据库连接。con.close();
+
+Class.forName(className) 中 className参数，可以填入一个 包名.类名（类路径）。可以你将你的类加载到内存，但是你暂时的无法得到该类对象的。
+Class c = Class.forName("com.zyw.jdbc.Demo");
+newInstance() 创建这个类的对象  返回Object。Demo demo = (Demo)c.newInstance();通过反射创建的
+
+不带参数的 SQL语句（如果语句中有问号?，就是带参数的）通常使用 Statement对象执行。即用于执行静态 SQL语句，但是会导致sql注入
+PreparedStatement对象用来将参数化的 SQL语句发送到数据库。PreparedStatement prepareStatement(String sql),对象是有参数的
+ 带有参数或不带有参数的SQL语句都可以被预编译并存储在 PreparedStatement对象中。然后可以有效地使用此对象来多次执行该语句
+?称为占位符
+ 
+ResultSet光标最初位于第一行数据之前，即指向列名；每调用一次next（）光标向下移动一行，并返回这一行是否有数据值true或false
+
+如果用PreparedStatement pstmt = con.prepareStatement(sql);
+ResultSet rs = pstmt.executeQuery();   //这个括号里面就不用再写sql了,如果还写着，会提示错误。ORA-03115: 不支持的网络数据类型或表示法
+ORA-01017: invalid username/password; logon denied.说明连接数据库的时候用户名或密码错误了
+
+外部文件config.properties文件放在src下面。通过java.util.Properties来读取外部文件，这样可以通过修改外部文件就可以改变连接的数据库类型
+创建一个外部文件对象private static Properties prop = new Properties();
+加载外部文件内容prop.load(DBHelper2.class.getClassLoader().getResourceAsStream("config.properties"));
+获取外部文件的内容prop.getProperty("DRIVER")
+
+静态块在第一次访问类的时候执行，只执行一次
+普通块，不创建对象不执行
+
+Vector也是一个集合，跟ArrayList差不多，只不过这个支持同步
+
+ 数据库连接池
+当创建数据库连接时， 如果池中有空闲连接，就拿出一个空闲连接，如果池为空，将创建一个新的连接
+当关闭数据库连接时，如果池中有空间，将连接放回池中， 如果池满了， 就直接关闭掉
+
+连接池中的连接不需要关闭， 如果手动关闭就失去了连接池的意义，连接池的作用就是存储可用的连接对象，
+从而下次用客户端连接上来， 系统就不需要花时间建立新的连接，而是直接从连接池中取出可用连接， 因为省去了创建新连接的时间，这样就极大的提高了系统的效率。
+
+sql Date 是util Date的子类
+
+反射：分析类的程序。通过反射可以根据一个类路径（或对象，类名）来获取这个类中的所有信息
+使用反射，首先要得到这个类的Class对象
+反射得到方法才是最重要的
+
+this指的是当前正在访问这段代码的对象,当在内部类中使用this指的就是内部类的对象,为了访问外层类对象,就可以使用外层类名.this来访问,一般也只在这种情况下使用这种
+
+Menu不需要放在Panel上
+
+			
